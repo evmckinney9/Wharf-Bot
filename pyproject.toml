@@ -17,6 +17,7 @@ dependencies = [
     "openai",
     "pyyaml",
     "pillow",
+    "requests"
 ]
 
 [project.optional-dependencies]
