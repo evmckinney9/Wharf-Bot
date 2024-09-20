@@ -1,0 +1,32 @@
+name: 📚 Documentation Update
+description: Request an update to the Python Project Documentation
+title: "[Documentation]: "
+labels: ["documentation"]
+assignees:
+  - evmckinney9
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to propose an update for our Python Project Documentation!
+  - type: textarea
+    id: documentation-section
+    attributes:
+      label: Documentation Section
+      placeholder: Specify the section of the documentation you're referring to...
+    validations:
+      required: true
+  - type: textarea
+    id: description
+    attributes:
+      label: Description of the Issue
+      placeholder: Describe the inaccuracies, missing information, or required updates...
+    validations:
+      required: true
+  - type: textarea
+    id: proposed-change
+    attributes:
+      label: Proposed Change
+      placeholder: If possible, describe what change you propose...
+    validations:
+      required: false

@@ -1,0 +1,25 @@
+name: 🚀 Feature Request
+description: Suggest a new idea for the Python Project
+title: "[Feature Request]: "
+labels: ["enhancement"]
+assignees:
+  - evmckinney9
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to propose a new feature for our Python Project!
+  - type: textarea
+    id: feature-description
+    attributes:
+      label: Feature Description and Why
+      placeholder: Describe the feature you want to see and why...
+    validations:
+      required: true
+  - type: textarea
+    id: more-details
+    attributes:
+      label: Additional Details / Helpful Resources
+      placeholder: Please provide more details or point us to any helpful resources.
+    validations:
+      required: false

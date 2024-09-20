@@ -1,0 +1,38 @@
+name: Format Check
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  run-format-check:
+    if: github.repository != 'evmckinney9/python-template'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Check if template_flag.yml is gone
+        id: check-template
+        if: ${{ hashFiles('.github/template_flag.yml') == '' }}
+        run: |
+          echo "format_continue=true" >> $GITHUB_ENV
+
+      - name: Set up Python
+        if: env.format_continue == 'true'
+        uses: actions/setup-python@v4
+        with:
+          python-version: 3.9
+          cache: "pip"
+          cache-dependency-path: "**/pyproject.toml"
+
+      - name: Install pre-commit packages
+        if: env.format_continue == 'true'
+        run: pip install .[format] --quiet
+
+      - name: Run pre-commit
+        if: env.format_continue == 'true'
+        run: pre-commit run --all-files

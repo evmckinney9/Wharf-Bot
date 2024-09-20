@@ -1,0 +1,40 @@
+name: Tests
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  run-test:
+    if: github.repository != 'evmckinney9/python-template'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Check if template_flag.yml is gone
+        id: check-template
+        if: ${{ hashFiles('.github/template_flag.yml') == '' }}
+        run: |
+          echo "test_continue=true" >> $GITHUB_ENV
+
+      - name: Set up Python
+        if: env.test_continue == 'true'
+        uses: actions/setup-python@v4
+        with:
+          python-version: 3.9
+          cache: "pip"
+          cache-dependency-path: "**/pyproject.toml"
+
+      - name: Install dependencies
+        if: env.test_continue == 'true'
+        run: |
+          python -m pip install --upgrade pip
+          pip install -e .[test] --quiet
+
+      - name: Run pytest
+        if: env.test_continue == 'true'
+        run: pytest src/tests/
