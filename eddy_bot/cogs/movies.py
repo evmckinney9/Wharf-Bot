@@ -3,7 +3,7 @@ from discord.ext import commands
 from datetime import timedelta
 import requests
 import json
-import numpy as np
+import random  # Import random instead of numpy
 from io import BytesIO
 from PIL import Image
 import aiohttp
@@ -56,11 +56,11 @@ class Movies(commands.Cog, name="movies"):
 
         response = requests.get(url, headers=headers)
         data = json.loads(response.text)
-        num_pages = data["total_pages"]
+        num_pages = data["total_pages"] - 1
 
         # Pick two random pages and two random movie indices
-        rand_page = np.random.randint(1, num_pages + 1, size=2)
-        rand_entry = np.random.randint(0, 20, size=2)
+        rand_page = random.sample(range(1, num_pages + 1), 2)
+        rand_entry = random.sample(range(20), 2)
 
         # Fetch movie details from random pages
         entry0 = json.loads(requests.get(f"{url}&page={rand_page[0]}", headers=headers).text)
