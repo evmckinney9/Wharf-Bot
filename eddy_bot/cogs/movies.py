@@ -98,7 +98,7 @@ class Movies(commands.Cog, name="movies"):
         # Create and send the poll
         poll = discord.Poll(
             question="Which movie would you like to watch?",
-            duration=timedelta(minutes=3),
+            duration=timedelta(hours=12),
             multiple=False  # Only allow one vote
         )
         
