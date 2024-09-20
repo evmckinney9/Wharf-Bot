@@ -16,7 +16,7 @@ class Voice(commands.Cog, name="voice"):
         self.queue = deque()
         self.lock = asyncio.Lock()
         self.last_voice_command_time = None
-        self.cooldown_period = 180  # 3 minutes in seconds
+        self.cooldown_period = 10  # 10 seconds
         self.disconnect_task = None
 
     async def play_audio(self, ctx, audio_source) -> None:

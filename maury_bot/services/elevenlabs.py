@@ -39,10 +39,10 @@ async def get_elevenlabs_audio(bot, message: str):
 
         # get voice ID, or a random voice if none (or on failure)
         voice_list = robust_voices()
-        # voice = next((v for v in voice_list if v.name == bot.NAME), None)
-        # if not voice:
-        #     voice = choice(voice_list)
-        voice = choice(voice_list)
+        voice = next((v for v in voice_list if v.name == bot.NAME), None)
+        if not voice:
+            voice = choice(voice_list)
+        # voice = choice(voice_list)
 
         # configure voice settings
         voice.settings = VoiceSettings(
